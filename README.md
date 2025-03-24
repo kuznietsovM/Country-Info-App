@@ -24,50 +24,28 @@
 
 ## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+Test assessment on [Nest](https://github.com/nestjs/nest) 
 
-## Installation
+## Local run
 
-```bash
-$ yarn install
-```
+### You should have yarn
 
-## Running the app
+Install local node_modules
+`yarn install`
 
-```bash
-# development
-$ yarn run start
+### You should have docker
+### Build
+`docker-compose -f ./docker-compose.local.yaml -p country-info-project build`
 
-# watch mode
-$ yarn run start:dev
-
-# production mode
-$ yarn run start:prod
-```
+## Run
+`docker-compose -f ./docker-compose.local.yaml -p country-info-project up`
 
 ## Test
+After you run a program use some API development platforms (Postman, Insomnia, etc.) for testing API. 
 
-```bash
-# unit tests
-$ yarn run test
+Following endpoints should be avaliable:
+1. `GET /api/v1/country` should return avaliable countries
+2. `GET /api/v1/country/:countryCode` should return specific country's boarders, population and flag URL
+3. `POST /api/users/:userId/calendar/holidays` should create holidays as events in user's calendar depends on `countryCode`, `year` and `holidays` specified.
 
-# e2e tests
-$ yarn run test:e2e
-
-# test coverage
-$ yarn run test:cov
-```
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](LICENSE).
+You can check local db content by following `http://localhost:8081/`. Login: `admin`, password:`pass`.
