@@ -5,11 +5,11 @@ import { Event } from './schemas/event.schema';
 
 @Injectable()
 export class EventService {
-    constructor(
-        @InjectModel(Event.name) private readonly eventModel: Model<Event>,
-    ){}
+  constructor(
+    @InjectModel(Event.name) private readonly eventModel: Model<Event>,
+  ) {}
 
-    async insertMany(events: Event[]) : Promise<Event[]> {
-        return await this.eventModel.create(events)
-    }
+  async insertMany(events: Event[]): Promise<Event[]> {
+    return await this.eventModel.create(events);
+  }
 }

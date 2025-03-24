@@ -1,6 +1,6 @@
-import { IsISO31661Alpha2 } from "class-validator";
+import { IsISO31661Alpha2 } from 'class-validator';
 
 export class CountryCodeParamDto {
-    @IsISO31661Alpha2()
-    countryCode: string
+  @IsISO31661Alpha2()
+  countryCode: string;
 }

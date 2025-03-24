@@ -9,13 +9,13 @@ import { CalendarModule } from './user/calendar/calendar.module';
 
 @Module({
   imports: [
-    ConfigModule.forRoot({ 
+    ConfigModule.forRoot({
       ignoreEnvFile: true,
-      isGlobal: true, 
+      isGlobal: true,
     }),
-    CountryModule, 
-    DateNagerModule, 
-    CountriesNowModule, 
+    CountryModule,
+    DateNagerModule,
+    CountriesNowModule,
     DatabaseModule,
     UserModule,
     CalendarModule,

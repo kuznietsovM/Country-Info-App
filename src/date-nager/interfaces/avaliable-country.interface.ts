@@ -1,4 +1,4 @@
 export interface AvaliableCountry {
-    countryCode: string
-    name: string
+  countryCode: string;
+  name: string;
 }

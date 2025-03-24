@@ -1,14 +1,20 @@
-import { IsArray, IsISO31661Alpha2, IsNotEmpty, IsNumber, IsOptional, IsString, MinLength } from "class-validator";
+import {
+  IsArray,
+  IsISO31661Alpha2,
+  IsNumber,
+  IsOptional,
+  IsString,
+} from 'class-validator';
 
 export class AddHolidaysDto {
-    @IsISO31661Alpha2()
-    countryCode: string
+  @IsISO31661Alpha2()
+  countryCode: string;
 
-    @IsNumber()
-    year: number
+  @IsNumber()
+  year: number;
 
-    @IsOptional()
-    @IsArray()
-    @IsString({each: true})
-    holidays: string[]
+  @IsOptional()
+  @IsArray()
+  @IsString({ each: true })
+  holidays: string[];
 }

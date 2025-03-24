@@ -5,15 +5,15 @@ import { Model } from 'mongoose';
 
 @Injectable()
 export class CalendarService {
-    constructor(
-        @InjectModel(Calendar.name) private readonly calendarModel: Model<Calendar>,
-    ){}
+  constructor(
+    @InjectModel(Calendar.name) private readonly calendarModel: Model<Calendar>,
+  ) {}
 
-    async create(userId: string) : Promise<Calendar> {
-        return await this.calendarModel.create({userId})
-    }
+  async create(userId: string): Promise<Calendar> {
+    return await this.calendarModel.create({ userId });
+  }
 
-    async findByUser(userId: string) : Promise<Calendar | null> {
-        return await this.calendarModel.findOne({userId})
-    }
+  async findByUser(userId: string): Promise<Calendar | null> {
+    return await this.calendarModel.findOne({ userId });
+  }
 }

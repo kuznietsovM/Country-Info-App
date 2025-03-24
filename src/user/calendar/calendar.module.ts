@@ -13,15 +13,15 @@ import { EventService } from './event.service';
     MongooseModule.forFeature([
       {
         name: Calendar.name,
-        schema: CalendarSchema
+        schema: CalendarSchema,
       },
       {
         name: Event.name,
-        schema: EventSchema
-      }
+        schema: EventSchema,
+      },
     ]),
   ],
   providers: [CalendarService, EventService],
-  controllers: [CalendarController]
+  controllers: [CalendarController],
 })
 export class CalendarModule {}

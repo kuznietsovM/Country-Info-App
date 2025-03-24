@@ -5,6 +5,6 @@ import { HttpModule } from '@nestjs/axios';
 @Module({
   imports: [HttpModule],
   providers: [DateNagerService],
-  exports: [DateNagerService]
+  exports: [DateNagerService],
 })
 export class DateNagerModule {}

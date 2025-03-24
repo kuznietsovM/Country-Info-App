@@ -5,6 +5,6 @@ import { CountriesNowModule } from 'src/countries-now/countries-now.module';
 
 @Module({
   imports: [DateNagerModule, CountriesNowModule],
-  controllers: [CountryController]
+  controllers: [CountryController],
 })
 export class CountryModule {}

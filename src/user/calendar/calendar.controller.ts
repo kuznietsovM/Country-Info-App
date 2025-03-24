@@ -8,32 +8,34 @@ import { EventService } from './event.service';
 
 @Controller()
 export class CalendarController {
+  constructor(
+    private dateNagerService: DateNagerService,
+    private calendarService: CalendarService,
+    private eventService: EventService,
+  ) {}
 
-    constructor(
-        private dateNagerService: DateNagerService,
-        private calendarService: CalendarService,
-        private eventService: EventService
-    ) {}
+  @Post('users/:userId/calendar/holidays')
+  async createHolidays(
+    @Param() params: UserParamsDto,
+    @Body() body: AddHolidaysDto,
+  ) {
+    const holidays = await this.dateNagerService.publicHolidays(
+      body.year,
+      body.countryCode,
+      body.holidays,
+    );
 
-    @Post('users/:userId/calendar/holidays')
-    async createHolidays (
-        @Param() params: UserParamsDto,
-        @Body() body: AddHolidaysDto
-    ) {
-        const holidays = await this.dateNagerService.publicHolidays(body.year, body.countryCode, body.holidays)
-        
-        let calendar = await this.calendarService.findByUser(params.userId)
-        if (!calendar)
-            calendar = await this.calendarService.create(params.userId)
-        
-        const events: Event[] = holidays.map(holiday => {
-            return {
-                calendarId: calendar.id,
-                title: holiday.name,
-                date: new Date(holiday.date),
-            }
-        })
+    let calendar = await this.calendarService.findByUser(params.userId);
+    if (!calendar) calendar = await this.calendarService.create(params.userId);
 
-        return await this.eventService.insertMany(events)
-    }
+    const events: Event[] = holidays.map((holiday) => {
+      return {
+        calendarId: calendar.id,
+        title: holiday.name,
+        date: new Date(holiday.date),
+      };
+    });
+
+    return await this.eventService.insertMany(events);
+  }
 }
