@@ -4,6 +4,7 @@ import { ConfigService } from '@nestjs/config';
 import { firstValueFrom } from 'rxjs';
 import { AvaliableCountry } from './interfaces/avaliable-country.interface';
 import { CountryInfo } from './interfaces/country-info.interface';
+import { Holiday } from './interfaces/holiday.interface';
 
 @Injectable()
 export class DateNagerService {
@@ -37,6 +38,22 @@ export class DateNagerService {
             )
 
             return info
+        } catch(e) {
+            throw new InternalServerErrorException(e)
+        }
+    }
+
+    async publicHolidays (year: number, countryCode: string, holidaysFilter?: string[]) {
+        try {
+            let {data: holidays} = await firstValueFrom(
+                this.httpService.get<Holiday[]>(`${this.origin}/PublicHolidays/${year}/${countryCode}`)
+            )
+
+            if(holidaysFilter && holidaysFilter.length > 0) {
+                holidays = holidays.filter(holiday => holidaysFilter.includes(holiday.name))
+            }
+
+            return holidays
         } catch(e) {
             throw new InternalServerErrorException(e)
         }

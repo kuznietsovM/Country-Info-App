@@ -20,7 +20,7 @@ export class CountryController {
     }
 
     @Get(':countryCode')
-    async findByCode(
+    async getByCode(
         @Param() params: CountryCodeParamDto
     ) {
         const { borders, commonName } = await this.dateNagerService.countryInfo(params.countryCode)
