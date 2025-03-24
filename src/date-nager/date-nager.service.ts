@@ -3,6 +3,7 @@ import { Injectable, InternalServerErrorException } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { firstValueFrom } from 'rxjs';
 import { AvaliableCountry } from './interfaces/avaliable-country.interface';
+import { CountryInfo } from './interfaces/country-info.interface';
 
 @Injectable()
 export class DateNagerService {
@@ -24,6 +25,18 @@ export class DateNagerService {
             )
 
             return countries
+        } catch(e) {
+            throw new InternalServerErrorException(e)
+        }
+    }
+
+    async countryInfo (countryCode: string) : Promise<CountryInfo> {
+        try {
+            const {data: info} = await firstValueFrom(
+                this.httpService.get<CountryInfo>(`${this.origin}/CountryInfo/${countryCode}`)
+            )
+
+            return info
         } catch(e) {
             throw new InternalServerErrorException(e)
         }
